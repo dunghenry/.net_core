@@ -7,8 +7,8 @@ namespace api.Services
         private readonly IMongoCollection<UserModel> _users;
 
         public UserService(IUserStoreDatabaseSettings settings, IMongoClient mongoClient){
-            var db = mongoClient.GetDatabase("DB");
-            _users = db.GetCollection<UserModel>("users");
+            var db = mongoClient.GetDatabase(settings.DatabaseName);
+            _users = db.GetCollection<UserModel>(settings.UserCollectionName);
 
         }
 
